@@ -1,0 +1,20 @@
+﻿@model AnimeShop.Models.ProductModel
+
+@{
+    ViewBag.Title = "Potwierdzenie usunięcia produktu " + Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="S-card-default">
+
+    <h2>Potwierdzenie usunięcia</h2>
+
+    Produkt @Html.DisplayFor(model => model.Name) nie może zostać usunięty, może zostać dezaktywowany (niedostępny do kupienia, niewidoczny w katalogu)
+    <br />
+    <br />
+    Kontynuować?
+    <br />
+    @Html.ActionLink("Nie", "Index", "Manage", null, null) |
+    @Html.ActionLink("Tak", "Delete", new { id = Model.ProductModelId, confirm = true })
+</div>
+

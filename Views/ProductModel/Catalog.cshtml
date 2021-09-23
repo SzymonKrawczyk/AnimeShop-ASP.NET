@@ -1,0 +1,62 @@
+﻿@model IEnumerable<AnimeShop.Models.ProductModel>
+
+@{
+    ViewBag.Title = "Katalog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var categories = ViewData["categories"] as IEnumerable<AnimeShop.Models.CategoryModel>;
+    var products = ViewData["products"] as IEnumerable<AnimeShop.Models.ProductModel>;
+
+    string oldSearch = ViewData["search"] as string;
+    int oldCat = (int)ViewData["cat"];
+
+}
+
+<div class="S-card-default S-catalog-left">
+    <div class="S-categoryName" style="font-size: 25px">Kategorie:</div>
+    <div class="S-categoryName"> &nbsp @Html.ActionLink("Wszystko", "Catalog", new { cat = 0, search = oldSearch }, htmlAttributes: new { style = (oldCat == 0 ? "text-decoration: underline; color: darkorange" : "") })</div>
+    @foreach (var category in categories)
+    {
+         <div class="S-categoryName"> &nbsp &nbsp @Html.ActionLink(category.Name, "Catalog", new { cat = category.CategoryModelId, search = oldSearch }, htmlAttributes: new { style = (oldCat == category.CategoryModelId ? "text-decoration: underline; color: darkorange" : "") }) </div>
+    }
+</div>
+
+
+
+<div class="S-catalog-right">
+
+    <div class="S-card-default S-catalog-search-container">
+
+        @using (Html.BeginForm("Catalog", "ProductModel", FormMethod.Get))
+        {
+
+            @Html.TextBox("search", oldSearch, htmlAttributes: new { @class = "S-catalog-searchBar" })
+            <input type="text" name="cat" value="@oldCat" style="display: none" />
+            <input class="S-button S-catalog-searchButton" type="submit" value="Wyszukaj" />
+
+        }
+    </div>
+
+    @if (products.Count() == 0)
+    {
+        <div class="S-card-default">Brak produktów</div>
+    }
+    else
+    {
+        foreach (var item in products)
+        {
+            if (item.Active) 
+            {
+                <div class="S-card-default S-card-catalog">
+                    <div class="S-product-img-container">
+                        <a href="Details/@item.ProductModelId"><img class="S-product-img" src="~/Content/Media/@item.Media/1.jpg"/></a>
+                    </div>
+                    <div class="S-product-name"><a href="Details/@item.ProductModelId">@item.Name</a></div>
+                    <div class="S-product-price">Cena: @(AnimeShop.DAL.MyServer.formatPrice(item.Price))zł <span class="S-and-shipment-cost"><br> + dostawa</span></div>
+                </div>
+            }
+        }
+        <div style="clear: both;"></div>
+        <div></div>
+    }
+</div>

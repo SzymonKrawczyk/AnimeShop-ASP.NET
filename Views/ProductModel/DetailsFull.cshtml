@@ -1,0 +1,96 @@
+﻿@model AnimeShop.Models.ProductModel
+
+@{
+    ViewBag.Title = "Pełne szczegóły " + Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="S-card-default">
+    <h4>Pełne szczegóły @Model.Name</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <br />
+
+        <dt>
+            Nazwa kategorii
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Anime)
+        </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Manufacturer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Manufacturer)
+        </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @(AnimeShop.DAL.MyServer.formatPrice(Model.Price))zł
+        </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd style="text-align: justify">
+            @(new HtmlString(Model.Description.Replace("\n", "<br />")))
+        </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Media)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Media)
+        </dd>
+        <br />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+    </dl>
+    <p>
+        @Html.ActionLink("Powrót", "Index", "Manage", null, null)
+    </p>
+</div>

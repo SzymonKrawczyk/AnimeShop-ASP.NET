@@ -1,0 +1,19 @@
+﻿@model AnimeShop.Models.ShipmentModel
+
+@{
+    ViewBag.Title = "Potwierdzenie usunięcia dostawy " + Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="S-card-default">
+
+    <h2>Potwierdzenie usunięcia</h2>
+
+    Dostawa @Html.DisplayFor(model => model.Name) nie może zostać usunięta, może zostać dezaktywowana (niedostępna dla nowych zamówień)
+    <br />
+    <br />
+    Kontynuować?
+    <br />
+    @Html.ActionLink("Nie", "Index", "Manage", null, null) |
+    @Html.ActionLink("Tak", "Delete", new { id = Model.ShipmentModelId, confirm = true })
+</div>
