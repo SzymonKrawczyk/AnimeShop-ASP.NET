@@ -2,6 +2,8 @@
 
 created by Szymon Krawczyk
 
+(Kliknij w obrazek by powiększyć)
+
 Katalog
 
 ![Strona główna](readme-media/catalog.PNG)
