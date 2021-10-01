@@ -1,0 +1,485 @@
+﻿#goToTopButton {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 9999;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: red;
+    color: whitesmoke;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+
+
+body {
+    background-color: #18191a;
+    color: whitesmoke;
+    font-family: Calibri !important;
+}
+
+footer{
+    padding-left: 150px !important;
+}
+
+.S-brand-logo {
+    padding: 0 !important;
+}
+
+.body-content {
+    margin-top: 25px !important;
+    min-height: 80% !important;
+}
+
+.S-card-default {
+    background-color: #242526;
+    padding: 10px;
+    border-radius: 10px;
+}
+.S-card-profile {
+    margin-bottom: 10px;
+    overflow: auto;
+}
+
+
+td, th {
+    border: none !important;
+}
+
+th {
+    color: darkorange;
+}
+
+
+
+.S-table-category, .S-table-shipment {
+    width: auto;
+}
+
+
+.S-table-category tr td:nth-child(1) {
+    min-width: 375px;
+    max-width: 375px;
+}
+.S-table-category tr td:nth-child(2) {
+    min-width: 150px;
+    max-width: 150px;
+}
+
+
+
+
+.S-table-shipment tr td:nth-child(1) {
+    min-width: 200px;
+    max-width: 200px;
+}
+.S-table-shipment tr td:nth-child(2) {
+    min-width: 100px;
+    max-width: 100px;
+    text-align: right;
+    padding-right: 40px;
+}
+.S-table-shipment tr td:nth-child(3) {
+    min-width: 75px;
+    max-width: 75px;
+}
+
+
+
+
+
+.S-table-shipment tr td:nth-child(4) {
+    min-width: 150px;
+    max-width: 150px;
+}
+
+.S-table-product tr td:nth-child(1) {
+    min-width: 200px;
+    max-width: 200px;
+}
+.S-table-product tr td:nth-child(2) {
+    min-width: 100px;
+    max-width: 100px;
+}
+.S-table-product tr td:nth-child(3) {
+    min-width: 200px;
+    max-width: 200px;
+}
+.S-table-product tr td:nth-child(4) {
+    min-width: 75px;
+    max-width: 75px;
+}
+.S-table-product tr td:nth-child(5) {
+    min-width: 100px;
+    max-width: 100px;
+}
+.S-table-product tr td:nth-child(6) {
+    box-sizing: border-box;
+    min-width: 100px;
+    max-width: 100px;
+    text-align: right;
+    padding-right: 40px;
+}
+.S-table-product tr td:nth-child(7) {
+    min-width: 75px;
+    max-width: 75px;
+}
+.S-table-product tr td:nth-child(8) {
+    min-width: 180px;
+    max-width: 180px;
+}
+
+.S-catalog-left {
+    box-sizing: border-box;
+    min-width: 200px;
+    width: 20%;
+    float: left;
+    padding: 20px;
+}
+
+.S-categoryName {
+    box-sizing: border-box;
+    width: 100%;
+    float: left;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.S-catalog-right {
+    box-sizing: border-box;
+    min-width: 500px;
+    width: 79%;
+    float: right;
+    padding-left: 20px;
+}
+
+.S-catalog-search-container {
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.S-catalog-searchBar {
+    margin: 0 0 0 2.5%;
+    box-sizing: border-box;
+    width: 75% !important;
+    max-width: 75% !important;
+    height: 35px;
+    padding: 10px;
+    /*background-color: #18191a;*/
+    /*color: whitesmoke;*/
+}
+
+.S-button {
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #18191a;
+    color: whitesmoke;
+    border: none;
+    border-radius: 5px;
+}
+    .S-button:hover {
+        background-color: #333436 !important;
+        color: white !important;
+        border: none !important;
+        cursor: pointer !important;
+    }
+
+    .S-button:focus {
+        box-sizing: border-box;
+        border: none !important;
+        padding: 10px !important;
+    }
+
+.S-catalog-searchButton {
+    margin: 0 0 0 2.5%;
+    width: 15%;
+    min-width: 90px;
+}
+
+
+.S-card-catalog {
+    box-sizing: border-box;
+    width: 25%;
+    min-width: 200px;
+    margin: 4%;
+    float: left;
+    /*background-color: darkgreen;*/
+    overflow: hidden;
+}
+
+.S-product-img-container {
+    width: 100%;
+    height: 200px;
+    position: relative;
+}
+.S-product-img {
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+    height: 200px;
+    margin: auto; 
+}
+.S-product-name {
+    color: wheat;
+    width: 100%;
+    font-weight: bold;
+    font-size: 18px;
+    height: 69px;
+    margin-bottom: 5px;
+    margin-top: 8px;
+    float: left;
+    overflow: hidden;
+}
+.S-product-price {
+    color: orangered;
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.S-and-shipment-cost {
+    color: whitesmoke;
+    font-size: 15px;
+}
+
+
+
+
+
+.S-details-product-name {
+    font-size: 30px;
+    margin: 15px;
+    height: auto !important;
+}
+
+.S-details-info {
+
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.S-details-table {
+    width: 59%;
+    float: left;
+}
+
+.S-details-table tr td:nth-child(1) {
+    text-align: right;
+    padding: 2px;
+    width: 25%;
+}
+
+.S-details-table tr td:nth-child(2) {
+    text-align: left;
+    padding: 2px;
+    width: 70%;
+}
+
+
+.S-details-form {
+    margin: 0;
+    padding: 0;
+    float: right;
+    height: 50px;
+}
+
+.S-details-add-to-cart-amount {
+    width: 80px;
+    height: 40px;
+    padding: 15px !important;
+    line-height: 100%;
+    border-radius: 7px;
+    border: none;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    float: right;
+}
+
+.S-details-add-to-cart-button {
+    margin-right: 10px;
+    margin-left: 10px;
+    float: right;
+}
+
+.S-details-price {
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.S-details-imgs-container {
+    box-sizing: border-box;
+    width: 100%;
+}
+.S-details-product-img-holder {
+    width: 100%;
+    margin-top: 5px;
+}
+.S-details-product-img {
+    max-width: 100%;
+    position: relative;
+    transform: translateX(-50%);
+    left: 50%;
+}
+
+
+
+
+.S-card-about {
+    margin-bottom: 25px;
+    font-size: 1.2em;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+
+
+.S-card-cart {
+    overflow: auto;
+}
+
+
+
+
+.S-cart-form-table {
+    box-sizing: border-box;
+    width: 40%;
+    min-width: 450px;
+    float: left;
+    border-collapse: separate;
+    border-spacing: 16px 8px;
+}
+    .S-cart-form-table tr td:nth-child(1) {
+        text-align: right;
+        color: wheat;
+        width: 40%;
+    }
+    .S-cart-form-table tr td:nth-child(2) {
+        width: 60%;
+    }
+    .S-cart-textArea {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+.S-cart-products-table {
+    box-sizing: border-box;
+    width: 50%;
+    min-width: 550px;
+    float: right;
+    border-collapse: separate;
+    border-spacing: 16px 8px;
+}
+    .S-cart-products-table thead td {
+        text-align: center;
+        font-size: 1.5em;
+        font-weight: bold;
+        color: whitesmoke !important;
+    }
+    .S-cart-products-table tr td:nth-child(1) {
+        width: 50%;
+    }
+    .S-cart-products-table tr td:nth-child(2) {
+        text-align: center;
+        width: 15%;
+    }
+    .S-cart-products-table tr td:nth-child(3) {
+        min-width: 135px;
+        text-align: right;
+        width: 25%;
+        color: orangered;
+    }
+    .S-cart-products-table tr td:nth-child(4) {
+        text-align: center;
+        width: 10%;
+    }
+
+
+.S-textArea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+
+.S-card-order-container {
+    width: 100%;
+}
+
+.S-card-order-title {
+    z-index: 50;
+    margin-top: 10px;
+    z-index: 50;
+    position: relative;
+}
+
+.S-card-order-body {
+    display: none;
+    background-color: #0c0c0c;
+    position: relative;
+    top: -10px;
+    padding: 10px;
+    padding-top: 20px;
+    z-index: 5;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    overflow: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.form-control {
+    background-color: #18191a !important;
+    color: whitesmoke !important;
+}
+
+    .form-control:not(:empty) {
+        background-color: #18191a !important;
+        color: whitesmoke !important;
+    }
+
+a {
+    color: wheat;
+}
+
+    a:hover {
+        color: darkorange;
+        cursor: pointer;
+    }
+
+input {
+    background-color: #18191a !important;
+    color: whitesmoke !important;
+}
+
+    input:focus {
+        color: white;
+    }
+
+.check-box {
+    margin-left: 0px !important;
+}
+
+input[type="checkbox"] {
+    margin-left: 0px !important;
+}

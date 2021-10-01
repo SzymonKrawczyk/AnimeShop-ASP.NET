@@ -1,0 +1,347 @@
+﻿@model AnimeShop.Models.IndexViewModel
+@{
+    ViewBag.Title = "Konto";
+    AnimeShop.Models.CustomerModel customer = ViewData["customer"] as AnimeShop.Models.CustomerModel;
+    var orders = ViewData["orders"] as IEnumerable<AnimeShop.Models.OrderModel>;
+
+    IEnumerable<AnimeShop.Models.CategoryModel> categories = null;
+    IEnumerable<AnimeShop.Models.ShipmentModel> shipments = null;
+    IEnumerable<AnimeShop.Models.ProductModel> products = null;
+
+    if (User.IsInRole("admin")) {
+
+        categories = ViewData["categories"] as IEnumerable<AnimeShop.Models.CategoryModel>;
+        shipments = ViewData["shipments"] as IEnumerable<AnimeShop.Models.ShipmentModel>;
+        products = ViewData["products"] as IEnumerable<AnimeShop.Models.ProductModel>;
+    }
+}
+
+<div class="S-card-default S-card-profile">
+    <h4>Konto @User.Identity.Name</h4>
+    <p class="text-success">@ViewBag.StatusMessage</p>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Hasło:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+
+                @Html.ActionLink("Zmień hasło", "ChangePassword")
+
+            }
+            else
+            {
+
+                @Html.ActionLink("Utwórz", "SetPassword")
+            }
+            ]
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>Dane osobowe:</dt>
+        @if (customer != null)
+        {
+
+            <dd>&nbsp;@customer.FirstName @customer.LastName</dd>
+
+            <dd>&nbsp;tel. @customer.PhoneNumber</dd>
+
+            <dd>
+                &nbsp;@customer.Street @customer.Building @customer.Apartment <br />
+                &nbsp;@customer.ZipCode @customer.City
+            </dd>
+
+            <dd>
+                <span>[</span>
+                @Html.ActionLink("Edytuj", "Edit", "CustomerModel", null, null)
+                <span>]</span>
+            </dd>
+
+        }
+        else
+        {
+            <dd>
+                <span>[</span>
+                @Html.ActionLink("Dodaj", "Create", "CustomerModel", null, null)
+                <span>]</span>
+            </dd>
+        }
+    </dl>
+</div>
+
+
+@if (User.IsInRole("admin")) {
+
+    <div class="S-card-default S-card-profile" >
+        <h4>Kategorie</h4>
+        <hr />
+        <p>
+            @Html.ActionLink("Dodaj", "Create", "CategoryModel", null, null)
+        </p>
+        @if (categories != null && categories.Count() > 0){
+
+            <table class="table S-table-category">
+                <tr>
+                    <th>
+                        Nazwa
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var category in categories)
+                {
+                    <tr>
+                        <td>
+                           @category.Name
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edytuj", "Edit", "CategoryModel", new { id= category.CategoryModelId }, null) |
+                            @Html.ActionLink("Usuń", "Delete", "CategoryModel", new { id= category.CategoryModelId }, null)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        } else {
+            <p>
+                Brak kategorii
+            </p>
+        }
+    </div>
+
+    <div class="S-card-default S-card-profile">
+        <h4>Dostawy</h4>
+        <hr />
+        <p>
+            @Html.ActionLink("Dodaj", "Create", "ShipmentModel", null, null)
+        </p>
+        @if (shipments != null && shipments.Count() > 0)
+        {
+            <table class="table S-table-shipment">
+                <tr>
+                    <th>
+                        Nazwa
+                    </th>
+                    <th>
+                        Koszt
+                    </th>
+                    <th>
+                        Dostępność
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var shipment in shipments)
+                {
+
+                    <tr>
+                        <td>
+                            @shipment.Name
+                        </td>
+                        <td>
+                            @(AnimeShop.DAL.MyServer.formatPrice(shipment.Cost))zł
+                        </td>
+                        <td>
+                            @(shipment.Active ? "Tak" : "Nie")
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edytuj", "Edit", "ShipmentModel", new { id = shipment.ShipmentModelId }, null)
+                            @if (shipment.Active)
+                            {
+                                <span>| </span>@Html.ActionLink("Usuń", "Delete", "ShipmentModel", new { id = shipment.ShipmentModelId }, null);
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        } else {
+            <p>
+                Brak dostaw
+            </p>
+        }
+    </div>
+
+    <div class="S-card-default S-card-profile">
+        <h4>Produkty</h4>
+        <hr />
+        <p>
+            @Html.ActionLink("Dodaj", "Create", "ProductModel", null, null)
+        </p>
+         @if (products != null && products.Count() > 0) {
+
+           <table class="table S-table-product">
+                <tr>
+                    <th>
+                        Nazwa
+                    </th>
+                    <th>
+                        Kategoria
+                    </th>
+                    <th>
+                        Anime
+                    </th>
+                    <th>
+                        Wielkość
+                    </th>
+                    <th>
+                        Producent
+                    </th>
+                    <th>
+                        Cena
+                    </th>
+                    <th>
+                        Dostępność
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var product in products)
+                {
+
+                    <tr>
+                        <td>
+                            @Html.ActionLink(product.Name, "Details", "ProductModel", new { id = product.ProductModelId }, null)
+                        </td>
+                        <td>
+                            @(product.Category != null ? product.Category.Name : "")
+                        </td>
+                        <td>
+                            @product.Anime
+                        </td>
+                        <td>
+                            @product.Size
+                        </td>
+                        <td>
+                            @product.Manufacturer
+                        </td>
+                        <td>
+                            @(AnimeShop.DAL.MyServer.formatPrice(product.Price))zł
+                        </td>
+                        <td>
+                            @(product.Active ? "Tak" : "Nie")
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edytuj", "Edit", "ProductModel", new { id = product.ProductModelId }, null)
+                            | @Html.ActionLink("Szczegóły", "DetailsFull", "ProductModel", new { id = product.ProductModelId }, null)
+                            @if (product.Active)
+                            {
+                                <span>| </span>@Html.ActionLink("Usuń", "Delete", "ProductModel", new { id = product.ProductModelId }, null);
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+         } else {
+            <p>
+                Brak produktów
+            </p>
+         }
+    </div>
+}
+
+<div class="S-card-default S-card-profile">
+    <h4>Zamówienia</h4>
+    <hr />
+    
+    @if(orders == null || orders.Count() == 0) {
+
+        <span>Brak historii zamówień</span>
+
+    } else {
+
+        <script>
+            const toggleOrder = (id) => {
+                let target = document.getElementById(`S-card-order-${id}`);
+                target.style.display = target.style.display == "block" ? "none" : "block";
+            }
+        </script>
+
+        foreach(var order in orders) {
+            double orderValue = order.Shipment.Cost;
+
+            <div class="S-card-order-container">
+                <div class="S-card-order-title S-button" onclick="toggleOrder(@(order.OrderModelId))">
+                    ID: @order.OrderModelId | @order.Date | Status: <span style="color: @(order.Status.Name == "Wysłano" ? "lightgreen" : "brown")">@order.Status.Name</span>
+                </div>
+                <div class="S-card-order-body" id="S-card-order-@(order.OrderModelId)">
+                    @if (User.IsInRole("admin") && order.Status.Name != "Wysłano") { 
+                    <p>
+                        @Html.ActionLink("Zmień status zamówienia na \"Wysłano\"", "ConfirmSendOrder", "Order", new { id = order.OrderModelId }, null)
+                    </p>
+                    }
+                    <table class="S-cart-form-table">
+                        <tr>
+                            <td>Dostawa</td>
+                            <td>
+                                @order.Shipment.Name
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Informacje do dostawy</td>
+                            <td>@(new HtmlString(order.ShipmentInfo.Replace("\n", "<br />")))</td>
+                        </tr>
+                        <tr>
+                            <td>Dodatkowe informacje od kupującego</td>
+                            <td>
+                                @(new HtmlString(order.AdditionalInfo.Replace("\n", "<br />")))
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="S-cart-products-table">
+                        <thead>
+                            <tr>
+                                <td>Produkt</td>
+                                <td>Ilość</td>
+                                <td>Cena za sztukę</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in order.OrderLists) {
+                                orderValue += item.Price * item.Amount;
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink(item.Product.Name, "Details", "ProductModel", new { id = item.Product.ProductModelId }, null)
+                                    </td>
+
+                                    <td>
+                                        @item.Amount
+                                    </td>
+
+                                    <td>
+                                        @(AnimeShop.DAL.MyServer.formatPrice(item.Price))zł
+                                    </td>
+                                </tr>
+                            }
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>Dostawa</td>
+                                <td>&nbsp;</td>
+                                <td>@(AnimeShop.DAL.MyServer.formatPrice(order.Shipment.Cost))zł</td>
+                            </tr>
+                            <tr>
+                                <td>Łącznie</td>
+                                <td>&nbsp;</td>
+                                <td>@(AnimeShop.DAL.MyServer.formatPrice(orderValue))zł</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <div style="clear: both;"></div>
+                    <div></div>
+                </div>
+            </div>            
+        }
+    }
+
+</div>
